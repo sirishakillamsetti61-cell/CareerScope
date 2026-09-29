@@ -21,6 +21,7 @@ import { ALL_COMPANIES } from '../data/companies';
 import { CompanyLogo } from './CompanyLogo';
 import { useAuth } from '../context/AuthContext';
 import { DisclaimerBanner } from './DisclaimerBanner';
+import { openCareerScopeChat } from '../utils/chatTrigger';
 
 interface RoleDetailViewProps {
   role: RoleDetail;
@@ -94,6 +95,15 @@ export const RoleDetailView: React.FC<RoleDetailViewProps> = ({
           </div>
 
           <div className="flex items-center gap-2.5 self-start">
+            <button
+              onClick={() => openCareerScopeChat(`Tell me about the career roadmap, interview expectations, and recommended skill breakdown for a ${role.title}.`)}
+              className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-lg transition-colors cursor-pointer shadow-2xs"
+              title={`Ask n8n AI about ${role.title}`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+              <span>Ask AI</span>
+            </button>
+
             {onCompareWith && (
               <button
                 onClick={() => onCompareWith(role.id)}

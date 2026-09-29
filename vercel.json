@@ -6,6 +6,10 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
+      "source": "/api/n8n-proxy/:path*",
+      "destination": "https://sirisha17.app.n8n.cloud/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

@@ -17,6 +17,7 @@ import { CompanyRoleExplorer } from './components/CompanyRoleExplorer';
 import { RoleComparator } from './components/RoleComparator';
 import { RoadmapExplorer } from './components/RoadmapExplorer';
 import { DashboardView } from './components/DashboardView';
+import { N8nChatWidget } from './components/N8nChatWidget';
 import { getCompanyById } from './data/companies';
 import { getRoleById } from './data/roles';
 
@@ -179,6 +180,9 @@ function MainApp() {
         isOpen={isAuthOpen}
         onClose={() => setIsAuthOpen(false)}
       />
+
+      {/* CareerScope n8n AI Chatbot Widget */}
+      <N8nChatWidget />
 
     </div>
   );

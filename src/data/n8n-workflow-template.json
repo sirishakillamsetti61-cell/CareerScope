@@ -1,0 +1,112 @@
+{
+  "name": "CareerScope AI Chatbot",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "eb244c3b-01fe-49d6-adbf-8106bdc6238b",
+      "name": "When chat message received",
+      "webhookId": "eb244c3b-01fe-49d6-adbf-8106bdc6238b"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are CareerScope AI, an expert career advisor and tech industry mentor for students and job seekers.\n\nYour capabilities:\n- Explain tech companies (Google, Microsoft, Amazon, Meta, Apple, Netflix, Stripe, etc.), their engineering culture, hiring standards, and core products.\n- Detail tech roles (Software Engineer, Cloud Architect, Data Scientist, Product Manager, etc.) with day-to-day responsibilities.\n- Break down 6-stage structured milestone roadmaps from foundational learning to production project deliverables.\n- Provide skill progression matrices (Beginner, Intermediate, Advanced) and actionable interview preparation tips.\n\nKeep your tone encouraging, professional, concise, and structured with clear markdown formatting."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        260,
+        0
+      ],
+      "id": "8fa21e29-79a4-4a25-8321-c4d92a0e4391",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        220
+      ],
+      "id": "2f400cf9-a687-43cf-bc01-e63d08f435e0",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionKey": "={{ $json.sessionId || 'default' }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        360,
+        220
+      ],
+      "id": "1bcfa7b3-c0d1-44eb-9d8a-ea3e8006d912",
+      "name": "Window Buffer Memory"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

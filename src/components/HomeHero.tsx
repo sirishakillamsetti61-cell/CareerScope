@@ -15,6 +15,7 @@ import { ALL_COMPANIES } from '../data/companies';
 import { ALL_ROLES } from '../data/roles';
 import { CompanyLogo } from './CompanyLogo';
 import { DisclaimerBanner } from './DisclaimerBanner';
+import { openCareerScopeChat } from '../utils/chatTrigger';
 
 interface HomeHeroProps {
   onOpenSearch: () => void;
@@ -99,6 +100,18 @@ export const HomeHero: React.FC<HomeHeroProps> = ({
                 {ex}
               </span>
             ))}
+          </div>
+
+          <div className="mt-4 flex items-center justify-center">
+            <button
+              onClick={() => openCareerScopeChat()}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-50 to-violet-50 hover:from-indigo-100 hover:to-violet-100 border border-indigo-200 text-indigo-900 rounded-xl text-xs font-semibold shadow-2xs transition-all cursor-pointer group"
+            >
+              <Sparkles className="w-4 h-4 text-indigo-600 group-hover:scale-110 transition-transform" />
+              <span>Ask CareerScope AI (n8n Agent)</span>
+              <span className="text-[10px] font-mono text-indigo-600 bg-white px-1.5 py-0.5 rounded border border-indigo-200/80">Active</span>
+              <ArrowRight className="w-3.5 h-3.5 text-indigo-500 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </div>

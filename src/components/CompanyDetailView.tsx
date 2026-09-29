@@ -5,6 +5,7 @@ import { CompanyLogo } from './CompanyLogo';
 import { ALL_ROLES } from '../data/roles';
 import { useAuth } from '../context/AuthContext';
 import { DisclaimerBanner } from './DisclaimerBanner';
+import { openCareerScopeChat } from '../utils/chatTrigger';
 
 interface CompanyDetailViewProps {
   company: Company;
@@ -88,6 +89,15 @@ export const CompanyDetailView: React.FC<CompanyDetailViewProps> = ({
 
           {/* Action buttons */}
           <div className="flex items-center gap-2.5 self-stretch sm:self-auto justify-end">
+            <button
+              onClick={() => openCareerScopeChat(`Tell me about working at ${company.name}, their hiring process, culture, and key engineering & product roles.`)}
+              className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-lg transition-colors cursor-pointer shadow-2xs"
+              title={`Ask n8n AI about ${company.name}`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+              <span>Ask AI</span>
+            </button>
+
             <button
               onClick={() => toggleSaveCompany(company.id)}
               className={`flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg border transition-colors cursor-pointer ${

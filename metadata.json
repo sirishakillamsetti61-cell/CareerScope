@@ -2,5 +2,7 @@
   "name": "CareerScope - Companies, Roles & Career Roadmaps",
   "description": "Explore top companies, departments, roles, responsibilities, beginner-to-advanced skill breakdowns, and step-by-step career roadmaps.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
